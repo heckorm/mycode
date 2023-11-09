@@ -22,7 +22,7 @@ def suggest_outfit(temperature):
 
 def main():
 
-    api_key = '811807fea02c36334460cefa5bd724fb'
+    api_key = 'insert api key'
 
     city = input("Enter your city: ")
 
