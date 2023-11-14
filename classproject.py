@@ -2,7 +2,7 @@ import requests
 import random
 import time
 
-API_KEY = 'INSERT_API_KEY'
+API_KEY = '45b1bc74df5ca5e69f397cd206e93e2b'
 
 def get_genre_list():
     url = f"https://api.themoviedb.org/3/genre/movie/list?api_key={API_KEY}"
@@ -27,8 +27,8 @@ def choose_option(genres):
 def fetch_movie_by_genre(genre_id):
     if genre_id == '0':
         # Use current timestamp as a seed for random page number
-        #random_seed = int(time.time())
-        url = f"https://api.themoviedb.org/3/discover/movie?api_key={API_KEY}&page=4"
+        random_page = random.randint(1, 10)
+        url = f"https://api.themoviedb.org/3/discover/movie?api_key={API_KEY}&page={random_page}"
     else:
         url = f"https://api.themoviedb.org/3/discover/movie?api_key={API_KEY}&with_genres={genre_id}"
 
@@ -36,7 +36,7 @@ def fetch_movie_by_genre(genre_id):
     data = response.json()
 
     if 'results' in data and len(data['results']) > 0:
-        first_movie = data['results'][0]
+        first_movie = random.choice(data['results'])
         print(f"Check this out: {first_movie['title']} ({first_movie['release_date'][:4]})")
         show_movie_details(first_movie['id'])
     else:
